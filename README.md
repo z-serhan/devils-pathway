@@ -1,47 +1,16 @@
 <div align="center">
 
-![dplogos](https://github.com/z-serhan/devils-pathway/assets/49225046/6f745092-d85e-4350-b65f-e4f5d568eb65)
-
+<a href="https://github.com/z-serhan/devils-pathway/assets/49225046/6f745092-d85e-4350-b65f-e4f5d568eb65">
+  <img src="dplogos.png" alt="dplogo" width="80" height="80">
+</a>
   <h3 align="center">Devils Pathway</h3>
 
   <p align="center">
     A GPT-powered career guidance tool designed for university students to strategize their future career paths.
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
-
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -80,35 +49,80 @@ Taking into account students’ major, RIASEC personality types, work values, pe
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Installation and Setup
 
-
+This project consists of a frontend application built with Angular and styled using the ASU Library Bootstrap theme, and a backend application powered by Flask in Python. This guide will walk you through setting up both parts.
 
 ### Prerequisites
+Before starting, ensure you have the following installed:
+- [Node.js](https://nodejs.org/)
+- [Angular CLI](https://cli.angular.io/)
+- [Python 3.8](https://www.python.org/downloads/release/python-380/)
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+### Backend Setup
+#### Setting Up Python Flask
+Ensure Python 3.8 is installed on your system.
+Create a virtual environment in the backend project directory:
+
   ```sh
-  npm install npm@latest -g
+  python3 -m venv venv
   ```
 
-### Installation
+Activate the virtual environment:
+On Windows:
+  ```sh
+ venv\Scripts\activate
+```
 
+On Unix or MacOS: 
+  ```sh
+ source venv/bin/activate
+```
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+Install the required Python packages:
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+pip install annotated-types==0.6.0 anyio==4.3.0 blinker==1.7.0 certifi==2024.2.2 charset-normalizer==3.3.2 click==8.1.7 distro==1.9.0 exceptiongroup==1.2.0 Flask==3.0.2 Flask-Cors==4.0.0 Flask-SQLAlchemy==3.1.1 greenlet==3.0.3 h11==0.14.0 httpcore==1.0.4 httpx==0.27.0 idna==3.6 importlib_metadata==7.1.0 itsdangerous==2.1.2 Jinja2==3.1.3 MarkupSafe==2.1.5 openai==1.14.2 pydantic==2.6.4 pydantic_core==2.16.3 python-dotenv==1.0.1 requests==2.31.0 sniffio==1.3.1 SQLAlchemy==2.0.29 tqdm==4.66.2 typing_extensions==4.10.0 urllib3==2.2.1 Werkzeug==3.0.1 zipp==3.18.1
+```
 
+#### Configurations
+Ensure all sensitive tokens and keys are set up correctly. For instance, replace the OpenAI tokens in app.py with your own token to enable API calls.
+
+
+#### Running Flask
+With the virtual environment activated and dependencies installed, you can start the Flask application:
+
+  ```sh
+ python app.py
+```
+
+
+### Frontend Setup
+
+#### Installing Angular
+First, make sure you have Angular CLI installed. If you haven't installed Angular CLI yet, you can install it globally on your system through npm (Node.js package manager) with the following command:
+```bash
+npm install -g @angular/cli
+```
+
+#### Setting Up ASU Library Bootstrap
+Our project utilizes the [ASU Library Bootstrap theme](https://unity.web.asu.edu/@asu/unity-bootstrap-theme/index.html?path=/docs/get-started-get-started--page) for frontend design. To use it, you'll need to obtain a token and install it into your project. Follow the steps below:
+
+Visit the ASU Unity Bootstrap Theme documentation to get started.
+Obtain a token for accessing the theme.
+Follow the provided instructions to include the theme in your project via npm, using your token.
+
+#### Running the Application
+Navigate to the frontend project directory and install the required npm packages:
+
+  ```sh
+  npm install
+  ```
+Then, run the Angular development server:
+ 
+  ```sh
+  ng serve
+  ```
+The application should now be running on http://localhost:4200/.
 
 
 
