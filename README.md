@@ -1,7 +1,6 @@
 <div align="center">
-  <a href="https://github.com/MeiMei427/AI-hac/assets/55001852/bc1377c5-fa18-4b24-a3f0-cc3762a48691">
-    <img src="images/dplogo.png" alt="dplogo" width="80" height="80">
-  </a>
+
+    <img src="dplogos.png" alt="dplogos" width="80" height="80">
 
   <h3 align="center">Devils Pathway</h3>
 
