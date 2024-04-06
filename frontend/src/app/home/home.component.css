@@ -1,0 +1,28 @@
+       /* Centered content */
+       .centered-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    /* Logo image */
+    .app-logo {
+        width: 100px; /* Adjust based on your logo's size */
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    /* Main Content Styles */
+.main-content {
+    color: #FFFFFF; /* For white text */
+}
+
+.main-content .logo img {
+    margin-bottom: 20px; /* Spacing between logo and title */
+}
+
+.main-content h1 {
+    margin: 0 0 20px; /* Adjust title spacing */
+}

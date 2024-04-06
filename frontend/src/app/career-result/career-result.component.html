@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row row-spaced pt-2 pb-2">
+        <h2><span class="highlight-gold">Careers</span></h2>
+        <h3><span class="highlight-gold">You might want to explore these careers:</span></h3>
+        <div *ngFor= "let career of careers; ; let i = index" class="col col-12 col-lg-4">
+            <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{career.career_name}}</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    {{career.career_rationale}}
+                </p>
+            </div>
+            <div class="card-buttons">
+                <div class="card-button">
+                <a
+                    (click)="getCareerData(i)"
+                    class="btn btn-md btn-dark"
+                    data-ga="Button link here"
+                    data-ga-name="onclick"
+                    data-ga-event="link"
+                    data-ga-action="click"
+                    data-ga-type="internal link"
+                    data-ga-region="main content"
+                    data-ga-section="card default title"
+                    >View Details</a>
+                </div>
+            </div>
+            <div class="card-link">
+                <a *ngFor="let cert of career.asu_certs"
+                [href]="cert.cert_link"
+                class=""
+                data-ga="Regular text link here"
+                data-ga-name="onclick"
+                data-ga-event="link"
+                data-ga-action="click"
+                data-ga-type="internal link"
+                data-ga-region="main content"
+                data-ga-section="card default title"
+                target="_blank">
+                {{cert.cert_name}}</a>
+            </div>
+            <div class="card-tags">
+                <a *ngFor="let class of career.classes" class="btn btn-tag btn-tag-alt-white" href="#">{{class.class_code}}: {{class.class_name}}</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: flex; justify-content: center; align-items: start; padding-top: 10px;">
+        <button type="button" class="btn btn-primary" (click)="goToMeta()">What's Next?</button>
+    </div>
+</div>
+<app-career-info [showModal]="careerModalOpen" [careerData]="careerData" (closeModalEvent)="closeCareerModal()"></app-career-info>

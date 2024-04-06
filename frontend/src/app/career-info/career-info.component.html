@@ -1,0 +1,107 @@
+<div class="modal-background" *ngIf="showModal">
+    <div class="modal-content">
+        <div class="container mt-5" *ngIf="careerData">
+            <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="card-title">{{ careerData.career_name }}</h3>
+                <p class="card-text">
+                Related Jobs:
+                <span class="badge bg-secondary me-2" *ngFor="let job of careerData.related_jobs">
+                  <a style="color:white" [href]="'https://www.onetonline.org/link/summary/'+job.career_code" target="_blank">{{ job.career_title}}</a>
+                </span>
+                </p>
+                <p class="card-text"><strong>What they do:</strong> {{ careerData.career_description}}</p>
+            </div>
+            </div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion">
+                    <div class="accordion-item mt-3">
+                        <div class="accordion-header">
+                            <h3>
+                                <a
+                                    id="cardOne"
+                                    data-bs-toggle="collapse"
+                                    class="collapsed"
+                                    href="#cardBodyOne"
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-controls="cardBodyOne"
+                                    data-ga="This card unfolds"
+                                    data-ga-name="onclick"
+                                    data-ga-event="collapse"
+                                    data-ga-type="click"
+                                    data-ga-region="main content"
+                                    data-ga-section="default"
+                                >
+                                Key Tasks
+                                    <span class="fas fa-chevron-up"></span>
+                                </a>
+                            </h3>
+                        </div>
+                        <div
+                            id="cardBodyOne"
+                            class="collapse"
+                            aria-labelledby="cardOne"
+                            data-bs-parent="#accordionExample"
+                        >
+                            <div class="accordion-body">
+                                <br/>
+                                <ul class="uds-list null null">
+                                    <li *ngFor="let task of careerData.essential_duties">{{ task }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-item mt-3">
+                        <div class="accordion-header">
+                            <h3>
+                                <a
+                                    id="cardThree"
+                                    data-bs-toggle="collapse"
+                                    class="collapsed"
+                                    href="#cardBodyThree"
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-controls="cardBodyThree"
+                                    data-ga="This card unfolds"
+                                    data-ga-name="onclick"
+                                    data-ga-event="collapse"
+                                    data-ga-type="click"
+                                    data-ga-region="main content"
+                                    data-ga-section="default"
+                                >
+                                Personality & Work Styles
+                                    <span class="fas fa-chevron-up"></span>
+                                </a>
+                            </h3>
+                        </div>
+                        <div
+                            id="cardBodyThree"
+                            class="collapse"
+                            aria-labelledby="cardThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            <br/>
+                                <ul class="uds-list null null">
+                                    <li *ngFor="let style of careerData.work_style">{{ style }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Salary Information</h5>
+                <p class="card-text">Annual Median Salary: <strong>${{ careerData.average_salary.toLocaleString() }}</strong></p>
+            </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-dark" (click)="closeModal()">Close</a>
+        </div>
+    </div>
+</div>

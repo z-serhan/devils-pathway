@@ -1,0 +1,384 @@
+<div *ngIf="isLoading" class="spinner-overlay">
+  <div class="spinner"></div>
+</div>
+<div class="container" style="background: none;">
+<h2 *ngIf="currentStep === 1"><span class="highlight-gold">Getting Started</span></h2>
+<h2 *ngIf="currentStep > 1 && currentStep < 11 "><span class="highlight-gold">Choose You Own Adventure</span></h2>
+<h2 *ngIf="currentStep === 11"><span class="highlight-gold">RIASEC Results</span></h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div *ngIf="currentStep === 1" @stepTransition class="col-md-8 offset-md-2">
+          <h4><span class="highlight-gold">Please fill out some inital information:</span></h4>
+          <form class="uds-form">    
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select your major</label>
+                <input [(ngModel)]="studentInfo.major"  name="major" [typeahead]="majors" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="SkillInput">Skills</label>
+                <div class="chips-container">
+                  <div class="chip" *ngFor="let chip of skillChips; let i = index">
+                      {{ chip }}
+                      <span class="close-btn" (click)="removeSkillChip(i)">×</span>
+                  </div>
+                      <input
+                          type="text"
+                          class="form-control"
+                          name="skillsInputValue" 
+                          [(ngModel)]="skillsInputValue"
+                          (keydown.enter)="addSkillChip()" 
+                          placeholder="Type a value and press Enter to add multiple skills.." />
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="InterestInput">General Interests </label>
+              <div class="chips-container">
+                <div class="chip" *ngFor="let chip of interestChips; let i = index">
+                    {{ chip }}
+                    <span class="close-btn" (click)="removeInterestChip(i)">×</span>
+                </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="interestInputValue" 
+                        [(ngModel)]="interestsInputValue"
+                        (keydown.enter)="addInterestChip()" 
+                        placeholder="Type a value and press Enter to add multiple interests.." />
+              </div>
+          </div>
+            <button type="button" class="btn btn-primary mt-3" (click)="goToNextStep()">Next</button>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="currentStep === 2" @stepTransition class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="container bg-gray-2">
+          <div class="row">
+            <div class="col col-sm-12 p-3">
+              <p>
+                In the following section, you will go on an adventure and immerse yourself in a fantasy world. As the journey progresses, you will be presented with 8 scenarios. Please select the option in which you most see yourself. At the end, you will have a deeper understanding of your top strengths and values. 
+              </p>
+              <p>
+                Based on this information, we will recommend careers that best suit your major, personality, interests, skills, and values. Information about the courses, minors and certifications offered at ASU will also be presented to help you with career path development. 
+                </p>
+                <p> Let’s go!</p>   
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-3" (click)="getFirstMessage()">Next</button>
+    </div>
+  </div>
+    <div class="row">
+      <div *ngIf="currentStep === 3" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 4" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 5" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 6" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 7" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 8" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 9" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Next</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 10" @stepTransition class="col-md-8 offset-md-2">
+        <div *ngIf="currentChapter">
+          <div>
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h2>{{ currentChapter.chapterTitle }}</h2>
+                </div>
+                <div class="card-body">
+                  <p>{{ currentChapter.chapterDescription }}</p>
+                  <form  class="uds-form">
+                    <div class="form-group">
+                        <div class="form-check" *ngFor="let option of currentChapter.chapterOptions; let i = index">
+                          <input
+                              id="option{{i}}" 
+                              name="chapterOption" 
+                              [(ngModel)]="selectedOption"
+                              value="{{option.optionNumber}}"
+                              class="form-check-input"
+                              type = "radio"
+                          />
+                          <label class="form-check-label" for="option{{i}}">{{ option.optionDescription }}</label>
+                        </div>
+                      </div>
+                    <button type="button" class="btn btn-primary" (click)="getNewChapter()">Show Results</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentStep === 11" @stepTransition class="row">
+      <div class="col-md-8 offset-md-2">
+        <h3><span class="highlight-gold">Here are your top 3 personality types:</span></h3>
+        <div *ngFor= "let personality of personalities; let i = index" class="uds-card-arrangement">
+          <div class="uds-card-arrangement-card-container">
+            <div class="card card-story card-horizontal">
+              <img
+                class="card-img-top"
+                [src]="jpegFiles[i]"
+                alt="Card image cap"
+                width="600"
+                height="337"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="high"
+              />
+              <div class="card-content-wrapper">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    {{personality.name}}
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    {{personality.description}}
+                  </p>
+                </div>
+                <div class="card-buttons">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="container">
+        <div class="col-md-8 offset-md-2">
+          <h3><span class="highlight-gold">Here are your top 3 Work Values:</span></h3>
+            <div class="container bg-white">
+              <div *ngFor = "let workvalue of values" class="row">
+                <div class="col col-sm-12 p-3">
+                  <h4><span class="highlight-black">{{workvalue.name}}</span></h4>
+                  <p>{{workvalue.description}}</p>
+                </div>
+             </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  <div *ngIf="currentStep === 11" @stepTransition class="row" style="display: flex; justify-content: center; align-items: start; padding-top: 10px;">
+    <button type="button" class="btn btn-primary" (click)="getCareers()">Get Careers</button>
+  </div>
+  </div>
+  
+  

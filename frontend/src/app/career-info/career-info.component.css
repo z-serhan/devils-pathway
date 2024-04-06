@@ -1,0 +1,30 @@
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 100%;
+    max-height: 90vh; /* Adjust based on your needs */
+    overflow-y: auto; /* Make the modal content scrollable */
+    display: flex;
+    flex-direction: column; /* Ensure content flows vertically */
+  }
+
+  .modal-footer {
+    margin-top: auto; /* Pushes the footer to the bottom */
+    display: flex;
+    justify-content: flex-end; /* Aligns button to the right */
+    padding: 1rem; /* Adds space around the button */
+  }
